@@ -1,0 +1,155 @@
+Data TLB contains 4 sets.
+Each set contains 1 entries.
+Number of bits used for the index is 2.
+
+Number of virtual pages is 64.
+Number of physical pages is 16.
+Each page contains 256 bytes.
+Number of bits used for the page table index is 6.
+Number of bits used for the page offset is 8.
+
+D-cache contains 4 sets.
+Each set contains 1 entries.
+Each line is 16 bytes.
+The cache uses a write-allocate and write-back policy.
+Number of bits used for the index is 2.
+Number of bits used for the offset is 4.
+
+L2-cache contains 16 sets.
+Each set contains 4 entries.
+Each line is 16 bytes.
+The cache uses a write-allocate and write-back policy.
+Number of bits used for the index is 4.
+Number of bits used for the offset is 4.
+
+The addresses read in are virtual addresses.
+
+Virtual  Virt.  Page TLB    TLB TLB  PT   Phys        DC  DC          L2  L2
+Address  Page # Off  Tag    Ind Res. Res. Pg # DC Tag Ind Res. L2 Tag Ind Res.
+-------- ------ ---- ------ --- ---- ---- ---- ------ --- ---- ------ --- ----
+00000bd8      b   d8      2   3 miss miss    0      3   1 miss      0   d miss
+00000bd0      b   d0      2   3 hit          0      3   1 hit  
+00000bc8      b   c8      2   3 hit          0      3   0 miss      0   c miss
+00000bc0      b   c0      2   3 hit          0      3   0 hit  
+00000bb8      b   b8      2   3 hit          0      2   3 miss      0   b miss
+00000bb0      b   b0      2   3 hit          0      2   3 hit  
+00000ba8      b   a8      2   3 hit          0      2   2 miss      0   a miss
+00000df0      d   f0      3   1 miss miss    1      7   3 miss      1   f miss
+00000620      6   20      1   2 miss miss    2      8   2 miss      2   2 miss
+00000f80      f   80      3   3 miss miss    3      e   0 miss      3   8 miss
+00000998      9   98      2   1 miss miss    4     12   1 miss      4   9 miss
+00000988      9   88      2   1 hit          4     12   0 miss      4   8 miss
+00000a38      a   38      2   2 miss miss    5     14   3 miss      5   3 miss
+00000e00      e    0      3   2 miss miss    6     18   0 miss      6   0 miss
+000009e8      9   e8      2   1 hit          4     13   2 miss      4   e miss
+00000e10      e   10      3   2 hit          6     18   1 miss      6   1 miss
+00000c28      c   28      3   0 miss miss    7     1c   2 miss      7   2 miss
+00000e20      e   20      3   2 hit          6     18   2 miss      6   2 miss
+000009f0      9   f0      2   1 hit          4     13   3 miss      4   f miss
+00000e30      e   30      3   2 hit          6     18   3 miss      6   3 miss
+000009f8      9   f8      2   1 hit          4     13   3 miss      4   f hit 
+00000e40      e   40      3   2 hit          6     19   0 miss      6   4 miss
+00000a18      a   18      2   2 miss hit     5     14   1 miss      5   1 miss
+00000e50      e   50      3   2 miss hit     6     19   1 miss      6   5 miss
+00000a20      a   20      2   2 miss hit     5     14   2 miss      5   2 miss
+00000e60      e   60      3   2 miss hit     6     19   2 miss      6   6 miss
+000009e0      9   e0      2   1 hit          4     13   2 miss      4   e hit 
+00000e70      e   70      3   2 hit          6     19   3 miss      6   7 miss
+000009d8      9   d8      2   1 hit          4     13   1 miss      4   d miss
+00000e80      e   80      3   2 hit          6     1a   0 miss      6   8 miss
+00000a68      a   68      2   2 miss hit     5     15   2 miss      5   6 miss
+00000e90      e   90      3   2 miss hit     6     1a   1 miss      6   9 miss
+00000a80      a   80      2   2 miss hit     5     16   0 miss      5   8 miss
+00000ea0      e   a0      3   2 miss hit     6     1a   2 miss      6   a miss
+00000a00      a    0      2   2 miss hit     5     14   0 miss      5   0 miss
+00000eb0      e   b0      3   2 miss hit     6     1a   3 miss      6   b miss
+00000a08      a    8      2   2 miss hit     5     14   0 hit  
+00000ec0      e   c0      3   2 miss hit     6     1b   0 miss      6   c miss
+00000a10      a   10      2   2 miss hit     5     14   1 miss      5   1 hit 
+00000ed0      e   d0      3   2 miss hit     6     1b   1 miss      6   d miss
+00000af8      a   f8      2   2 miss hit     5     17   3 miss      5   f miss
+00000ee0      e   e0      3   2 miss hit     6     1b   2 miss      6   e miss
+00000af0      a   f0      2   2 miss hit     5     17   3 hit  
+00000ef0      e   f0      3   2 miss hit     6     1b   3 miss      6   f miss
+00000a88      a   88      2   2 miss hit     5     16   0 miss      5   8 hit 
+00000f00      f    0      3   3 hit          3      c   0 miss      3   0 miss
+00000b00      b    0      2   3 miss hit     0      0   0 miss      0   0 miss
+00000f10      f   10      3   3 miss hit     3      c   1 miss      3   1 miss
+00000b58      b   58      2   3 miss hit     0      1   1 miss      0   5 miss
+00000f20      f   20      3   3 miss hit     3      c   2 miss      3   2 miss
+00000b10      b   10      2   3 miss hit     0      0   1 miss      0   1 miss
+00000f30      f   30      3   3 miss hit     3      c   3 miss      3   3 miss
+000009e8      9   e8      2   1 hit          4     13   2 miss      4   e hit 
+00000e08      e    8      3   2 miss hit     6     18   0 miss      6   0 hit 
+00000e08      e    8      3   2 hit          6     18   0 hit  
+000009e0      9   e0      2   1 hit          4     13   2 hit  
+00000e68      e   68      3   2 hit          6     19   2 miss      6   6 hit 
+00000e68      e   68      3   2 hit          6     19   2 hit  
+000009f0      9   f0      2   1 hit          4     13   3 miss      4   f hit 
+00000e28      e   28      3   2 hit          6     18   2 miss      6   2 hit 
+00000e28      e   28      3   2 hit          6     18   2 hit  
+000009f8      9   f8      2   1 hit          4     13   3 hit  
+00000e38      e   38      3   2 hit          6     18   3 miss      6   3 hit 
+00000e38      e   38      3   2 hit          6     18   3 hit  
+00000a00      a    0      2   2 miss hit     5     14   0 miss      5   0 hit 
+00000ea8      e   a8      3   2 miss hit     6     1a   2 miss      6   a hit 
+00000ea8      e   a8      3   2 hit          6     1a   2 hit  
+00000a80      a   80      2   2 miss hit     5     16   0 miss      5   8 hit 
+00000e98      e   98      3   2 miss hit     6     1a   1 miss      6   9 hit 
+00000e98      e   98      3   2 hit          6     1a   1 hit  
+00000b58      b   58      2   3 miss hit     0      1   1 miss      0   5 hit 
+00000f18      f   18      3   3 miss hit     3      c   1 miss      3   1 hit 
+00000f18      f   18      3   3 hit          3      c   1 hit  
+00000c28      c   28      3   0 hit          7     1c   2 miss      7   2 hit 
+00000e18      e   18      3   2 hit          6     18   1 miss      6   1 hit 
+00000e18      e   18      3   2 hit          6     18   1 hit  
+00000a68      a   68      2   2 miss hit     5     15   2 miss      5   6 hit 
+00000e88      e   88      3   2 miss hit     6     1a   0 miss      6   8 hit 
+00000a00      a    0      2   2 miss hit     5     14   0 miss      5   0 hit 
+00000a10      a   10      2   2 hit          5     14   1 miss      5   1 hit 
+00000ec8      e   c8      3   2 miss hit     6     1b   0 miss      6   c hit 
+00000b00      b    0      2   3 miss hit     0      0   0 miss      0   0 hit 
+00000f08      f    8      3   3 miss hit     3      c   0 miss      3   0 hit 
+00000ab8      a   b8      2   2 miss hit     5     16   3 miss      5   b miss
+00000ab0      a   b0      2   2 hit          5     16   3 hit  
+00000a40      a   40      2   2 hit          5     15   0 miss      5   4 miss
+00000ea8      e   a8      3   2 miss hit     6     1a   2 miss      6   a hit 
+00000a08      a    8      2   2 miss hit     5     14   0 miss      5   0 hit 
+00000b10      b   10      2   3 miss hit     0      0   1 miss      0   1 hit 
+00000eb8      e   b8      3   2 miss hit     6     1a   3 miss      6   b hit 
+00000f28      f   28      3   3 miss hit     3      c   2 miss      3   2 hit 
+000009d8      9   d8      2   1 hit          4     13   1 miss      4   d hit 
+00000a80      a   80      2   2 miss hit     5     16   0 miss      5   8 hit 
+00000e78      e   78      3   2 miss hit     6     19   3 miss      6   7 hit 
+00000e98      e   98      3   2 hit          6     1a   1 miss      6   9 hit 
+000009f8      9   f8      2   1 hit          4     13   3 miss      4   f hit 
+00000e38      e   38      3   2 hit          6     18   3 miss      6   3 hit 
+00000aa8      a   a8      2   2 miss hit     5     16   2 miss      5   a miss
+00000ab0      a   b0      2   2 hit          5     16   3 miss      5   b hit 
+00000ab8      a   b8      2   2 hit          5     16   3 hit  
+
+Simulation statistics
+
+dtlb hits        : 45
+dtlb misses      : 55
+dtlb hit ratio   : 0.450000
+
+pt hits          : 47
+pt faults        : 8
+pt hit ratio     : 0.854545
+
+dc hits          : 17
+dc misses        : 83
+dc hit ratio     : 0.170000
+
+L2 hits          : 70
+L2 misses        : 46
+L2 hit ratio     : 0.603448
+
+Total reads      : 62
+Total writes     : 38
+Ratio of reads   : 0.620000
+
+main memory refs : 47
+page table refs  : 55
+disk refs        : 8

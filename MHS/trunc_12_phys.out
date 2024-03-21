@@ -1,0 +1,156 @@
+Data TLB contains 4 sets.
+Each set contains 1 entries.
+Number of bits used for the index is 2.
+
+Number of virtual pages is 64.
+Number of physical pages is 16.
+Each page contains 256 bytes.
+Number of bits used for the page table index is 6.
+Number of bits used for the page offset is 8.
+
+D-cache contains 4 sets.
+Each set contains 1 entries.
+Each line is 16 bytes.
+The cache uses a write-allocate and write-back policy.
+Number of bits used for the index is 2.
+Number of bits used for the offset is 4.
+
+L2-cache contains 16 sets.
+Each set contains 4 entries.
+Each line is 16 bytes.
+The cache uses a write-allocate and write-back policy.
+Number of bits used for the index is 4.
+Number of bits used for the offset is 4.
+
+The addresses read in are physical addresses.
+TLB is disabled in this configuration.
+
+Physical Virt.  Page TLB    TLB TLB  PT   Phys        DC  DC          L2  L2
+Address  Page # Off  Tag    Ind Res. Res. Pg # DC Tag Ind Res. L2 Tag Ind Res.
+-------- ------ ---- ------ --- ---- ---- ---- ------ --- ---- ------ --- ----
+00000bd8          d8                         b     2f   1 miss      b   d miss
+00000bd0          d0                         b     2f   1 hit  
+00000bc8          c8                         b     2f   0 miss      b   c miss
+00000bc0          c0                         b     2f   0 hit  
+00000bb8          b8                         b     2e   3 miss      b   b miss
+00000bb0          b0                         b     2e   3 hit  
+00000ba8          a8                         b     2e   2 miss      b   a miss
+00000df0          f0                         d     37   3 miss      d   f miss
+00000620          20                         6     18   2 miss      6   2 miss
+00000f80          80                         f     3e   0 miss      f   8 miss
+00000998          98                         9     26   1 miss      9   9 miss
+00000988          88                         9     26   0 miss      9   8 miss
+00000a38          38                         a     28   3 miss      a   3 miss
+00000e00           0                         e     38   0 miss      e   0 miss
+000009e8          e8                         9     27   2 miss      9   e miss
+00000e10          10                         e     38   1 miss      e   1 miss
+00000c28          28                         c     30   2 miss      c   2 miss
+00000e20          20                         e     38   2 miss      e   2 miss
+000009f0          f0                         9     27   3 miss      9   f miss
+00000e30          30                         e     38   3 miss      e   3 miss
+000009f8          f8                         9     27   3 miss      9   f hit 
+00000e40          40                         e     39   0 miss      e   4 miss
+00000a18          18                         a     28   1 miss      a   1 miss
+00000e50          50                         e     39   1 miss      e   5 miss
+00000a20          20                         a     28   2 miss      a   2 miss
+00000e60          60                         e     39   2 miss      e   6 miss
+000009e0          e0                         9     27   2 miss      9   e hit 
+00000e70          70                         e     39   3 miss      e   7 miss
+000009d8          d8                         9     27   1 miss      9   d miss
+00000e80          80                         e     3a   0 miss      e   8 miss
+00000a68          68                         a     29   2 miss      a   6 miss
+00000e90          90                         e     3a   1 miss      e   9 miss
+00000a80          80                         a     2a   0 miss      a   8 miss
+00000ea0          a0                         e     3a   2 miss      e   a miss
+00000a00           0                         a     28   0 miss      a   0 miss
+00000eb0          b0                         e     3a   3 miss      e   b miss
+00000a08           8                         a     28   0 hit  
+00000ec0          c0                         e     3b   0 miss      e   c miss
+00000a10          10                         a     28   1 miss      a   1 hit 
+00000ed0          d0                         e     3b   1 miss      e   d miss
+00000af8          f8                         a     2b   3 miss      a   f miss
+00000ee0          e0                         e     3b   2 miss      e   e miss
+00000af0          f0                         a     2b   3 hit  
+00000ef0          f0                         e     3b   3 miss      e   f miss
+00000a88          88                         a     2a   0 miss      a   8 hit 
+00000f00           0                         f     3c   0 miss      f   0 miss
+00000b00           0                         b     2c   0 miss      b   0 miss
+00000f10          10                         f     3c   1 miss      f   1 miss
+00000b58          58                         b     2d   1 miss      b   5 miss
+00000f20          20                         f     3c   2 miss      f   2 miss
+00000b10          10                         b     2c   1 miss      b   1 miss
+00000f30          30                         f     3c   3 miss      f   3 miss
+000009e8          e8                         9     27   2 miss      9   e hit 
+00000e08           8                         e     38   0 miss      e   0 hit 
+00000e08           8                         e     38   0 hit  
+000009e0          e0                         9     27   2 hit  
+00000e68          68                         e     39   2 miss      e   6 hit 
+00000e68          68                         e     39   2 hit  
+000009f0          f0                         9     27   3 miss      9   f hit 
+00000e28          28                         e     38   2 miss      e   2 hit 
+00000e28          28                         e     38   2 hit  
+000009f8          f8                         9     27   3 hit  
+00000e38          38                         e     38   3 miss      e   3 hit 
+00000e38          38                         e     38   3 hit  
+00000a00           0                         a     28   0 miss      a   0 hit 
+00000ea8          a8                         e     3a   2 miss      e   a hit 
+00000ea8          a8                         e     3a   2 hit  
+00000a80          80                         a     2a   0 miss      a   8 hit 
+00000e98          98                         e     3a   1 miss      e   9 hit 
+00000e98          98                         e     3a   1 hit  
+00000b58          58                         b     2d   1 miss      b   5 hit 
+00000f18          18                         f     3c   1 miss      f   1 hit 
+00000f18          18                         f     3c   1 hit  
+00000c28          28                         c     30   2 miss      c   2 hit 
+00000e18          18                         e     38   1 miss      e   1 hit 
+00000e18          18                         e     38   1 hit  
+00000a68          68                         a     29   2 miss      a   6 hit 
+00000e88          88                         e     3a   0 miss      e   8 hit 
+00000a00           0                         a     28   0 miss      a   0 hit 
+00000a10          10                         a     28   1 miss      a   1 hit 
+00000ec8          c8                         e     3b   0 miss      e   c hit 
+00000b00           0                         b     2c   0 miss      b   0 hit 
+00000f08           8                         f     3c   0 miss      f   0 hit 
+00000ab8          b8                         a     2a   3 miss      a   b miss
+00000ab0          b0                         a     2a   3 hit  
+00000a40          40                         a     29   0 miss      a   4 miss
+00000ea8          a8                         e     3a   2 miss      e   a hit 
+00000a08           8                         a     28   0 miss      a   0 hit 
+00000b10          10                         b     2c   1 miss      b   1 hit 
+00000eb8          b8                         e     3a   3 miss      e   b hit 
+00000f28          28                         f     3c   2 miss      f   2 hit 
+000009d8          d8                         9     27   1 miss      9   d hit 
+00000a80          80                         a     2a   0 miss      a   8 hit 
+00000e78          78                         e     39   3 miss      e   7 hit 
+00000e98          98                         e     3a   1 miss      e   9 hit 
+000009f8          f8                         9     27   3 miss      9   f hit 
+00000e38          38                         e     38   3 miss      e   3 hit 
+00000aa8          a8                         a     2a   2 miss      a   a miss
+00000ab0          b0                         a     2a   3 miss      a   b hit 
+00000ab8          b8                         a     2a   3 hit  
+
+Simulation statistics
+
+dtlb hits        : 0
+dtlb misses      : 0
+dtlb hit ratio   : N/A
+
+pt hits          : 0
+pt faults        : 0
+pt hit ratio     : N/A
+
+dc hits          : 17
+dc misses        : 83
+dc hit ratio     : 0.170000
+
+L2 hits          : 70
+L2 misses        : 46
+L2 hit ratio     : 0.603448
+
+Total reads      : 62
+Total writes     : 38
+Ratio of reads   : 0.620000
+
+main memory refs : 47
+page table refs  : 0
+disk refs        : 0
