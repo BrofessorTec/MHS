@@ -13,35 +13,48 @@
 
         static void Main()
         {
-            Console.WriteLine("Memory Hierarchy Simulator");
+            while (true)
+            {
+                Console.WriteLine("Memory Hierarchy Simulator");
 
             // Read configuration or set default values
 
-            Console.WriteLine("Choose algorithm to simulate:");
-            Console.WriteLine("1. Optimal Greedy Algorithm");
-            Console.WriteLine("2. Optimal FIFO Algorithm");
-            Console.WriteLine("3. Optimal LRU Algorithm");
+                Console.WriteLine("Choose algorithm to simulate:");
+                Console.WriteLine("1. Optimal Greedy Algorithm");
+                Console.WriteLine("2. Optimal FIFO Algorithm");
+                Console.WriteLine("3. Optimal LRU Algorithm");
+                Console.WriteLine("Q. Quit the program");
 
-            int choice = int.Parse(Console.ReadLine());
+                string choice = Console.ReadLine();
 
 
-            switch (choice)
-            {
-                case 1:
-                    OptimalGreedyAlgorithm();
-                    DisplaySummaryStatistics();
-                    break;
-                case 2:
-                    //OptimalFIFOAlgorithm();
-                    DisplaySummaryStatistics();
-                    break;
-                case 3:
-                    //OptimalLRUAlgorithm(); 
-                    DisplaySummaryStatistics();
-                    break;
-                default:
-                    Console.WriteLine("Invalid Number Entered...");
-                    break;
+                switch (choice.ToLower())
+                {
+                    case "q":
+                        Console.WriteLine("Thanks for using the program, exiting now..");
+                        Thread.Sleep(1000);
+                        Environment.Exit(0);
+                        break;
+                    case "1":
+                        OptimalGreedyAlgorithm();
+                        DisplaySummaryStatistics();
+                        break;
+                    case "2":
+                        //OptimalFIFOAlgorithm();
+                        DisplaySummaryStatistics();
+                        break;
+                    case "3":
+                        //OptimalLRUAlgorithm(); 
+                        DisplaySummaryStatistics();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Number Entered...");
+                        break;
+                }
+
+                Console.WriteLine("Enter any key to continue.");
+                Console.ReadLine();
+                Console.Clear();
             }
 
 
