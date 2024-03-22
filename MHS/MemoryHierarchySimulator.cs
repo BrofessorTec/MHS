@@ -7,6 +7,147 @@ using System.Xml;
 
 namespace MHS
 {
+    public class MemoryHierarchySimulator
+    {
+        //Initial Setup of properties.
+        public Dictionary<string, string> cache = new Dictionary<string, string>();
+
+        public List<MemoryAddress> memoryAddresses = new List<MemoryAddress>();
+        public int totalHits { get; set; }
+        public int totalMisses { get; set; }
+        public int readAccesses { get; set; }
+        public int writeAccesses { get; set; }
+        public int capacityOfCache { get; set; }
+
+        public List<string> memoryReferences = new List<string>();
+
+        /// <summary>
+        /// Default Constructor that sets properties to 0.
+        /// </summary>
+        public MemoryHierarchySimulator()
+        {
+            totalHits = 0;
+            totalMisses = 0;
+            readAccesses = 0;
+            writeAccesses = 0;
+            capacityOfCache = 4;
+        }
+
+        /// <summary>
+        /// Reads the memory trace and converts the input file to a list of memory addresses.
+        /// </summary>
+        /// <param name="trace">The path of the trace to be read.</param>
+        /// <returns>A list of strings of memory addresses.</returns>
+        public List<string> ReadMemoryTrace(string trace)
+        {
+            List<string> memoryAddresses = new List<string>();
+
+            using (StreamReader rdr = new StreamReader(@$"..\..\..\{trace}"))
+            {
+                int i = 0;
+                string line;
+                string[] inputLines;
+
+
+                while ((line = rdr.ReadLine()) != null)
+                {
+                    inputLines = line.Split(":");
+                    memoryAddresses.Add(inputLines[i]);
+                    memoryAddresses.Add(inputLines[i + 1]);
+                    //i += 2;
+                }
+
+                rdr.Close();
+            }
+
+            return memoryAddresses;
+        }
+
+        /// <summary>
+        /// Parses a list of strings of memory address into a list of memory address objects.
+        /// </summary>
+        /// <param name="addresses">A list of strings of memory addresses.</param>
+        /// <returns>A list of memory address objects.</returns>
+        public List<MemoryAddress> ParseMemoryAddress(List<string> addresses)
+        {
+            for (int i = 0; i < addresses.Count; i += 2)
+            {
+                char accessType;
+                string pageNumber;
+                string pageOffset;
+
+                accessType = char.Parse(addresses[i]);
+                pageNumber = addresses[i + 1][0].ToString();
+                pageOffset = addresses[i + 1].Substring(1);
+
+                MemoryAddress memoryAddress = new MemoryAddress(accessType, pageNumber, pageOffset);
+
+                memoryAddresses.Add(memoryAddress);
+            }
+
+            return memoryAddresses;
+        }
+
+        /// <summary>
+        /// Takes in a memory address object and uses it to update the statistics of the simulator.
+        /// </summary>
+        /// <param name="memoryAddress">A memory address object.</param>
+        public void UpdateStatistics(MemoryAddress memoryAddress)
+        {
+            string memoryReference = $"{memoryAddress.virtualPageNumber} , {memoryAddress.virtualPageOffset} , {memoryAddress.physicalPageNumber} , {memoryAddress.physicalPageOffset}\n";
+
+            memoryReferences.Add(memoryReference);
+
+            if (memoryAddress.isHit)
+            {
+                totalHits++;
+            }
+            else
+            {
+                totalMisses++;
+            }
+
+            if (memoryAddress.accessType == 'R')
+            {
+                readAccesses++;
+            }
+            else if (memoryAddress.accessType == 'W')
+            {
+                writeAccesses++;
+            }
+        }
+
+        //Pretty much just copied this from the old code. Maybe needs work.
+        /// <summary>
+        /// Creates a string of summary statistic information.
+        /// </summary>
+        /// <returns>A string of summary statistic information.</returns>
+        public string DisplaySummaryStatistics()
+        {
+            string info = string.Empty;
+
+            info += "Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset\n";
+
+            foreach (string reference in memoryReferences)
+            {
+                info += reference;
+            }
+
+            info += "\nSummary Statistics:\n";
+            info += $"Total Hits: {totalHits}\n";
+            info += $"Total Misses: {totalMisses}\n";
+            info += $"Hit Ratio: {totalHits / totalMisses}\n";
+            info += $"Number of Read Accesses: {readAccesses}\n";
+            info += $"Number of Write Accesses: {writeAccesses}\n";
+            info += $"Read/Write Ratio: {readAccesses / writeAccesses}\n";
+            info += $"Total Number of Memory References: {readAccesses + writeAccesses}\n";
+
+            return info;
+        }
+    }
+
+
+    /*
     internal class MemoryHierarchySimulator
     {
         static Dictionary<int, int> pageTable = new Dictionary<int, int>();
@@ -124,7 +265,7 @@ namespace MHS
             Console.WriteLine($"Total Number of Memory References: {readAccesses + writeAccesses}");
         }
     }
+    */
 
-    
 }
 
