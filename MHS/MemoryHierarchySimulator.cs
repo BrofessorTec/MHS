@@ -126,7 +126,7 @@ namespace MHS
         {
             string info = string.Empty;
 
-            info += "Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset\n";
+            info += "\nVirtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset\n";
 
             foreach (string reference in memoryReferences)
             {
@@ -136,10 +136,10 @@ namespace MHS
             info += "\nSummary Statistics:\n";
             info += $"Total Hits: {totalHits}\n";
             info += $"Total Misses: {totalMisses}\n";
-            info += $"Hit Ratio: {totalHits / totalMisses}\n";
+            info += $"Hit Ratio: {totalHits / (double)totalMisses}\n";
             info += $"Number of Read Accesses: {readAccesses}\n";
             info += $"Number of Write Accesses: {writeAccesses}\n";
-            info += $"Read/Write Ratio: {readAccesses / writeAccesses}\n";
+            info += $"Read/Write Ratio: {readAccesses / (double)writeAccesses}\n";
             info += $"Total Number of Memory References: {readAccesses + writeAccesses}\n";
 
             return info;
