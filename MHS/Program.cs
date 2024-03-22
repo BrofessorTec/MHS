@@ -6,13 +6,15 @@
         {
             MemoryHierarchySimulator mhs = new MemoryHierarchySimulator();
 
-            string pathOfTrace = "trunc_12.dat";
-            mhs.ParseMemoryAddress(mhs.ReadMemoryTrace(pathOfTrace));
-
             bool isRunning = false;
 
             while (!isRunning)
             {
+                //This should likely be put in as one of the options able to be changed with 0. Edit Configuration alongside the capacityOfCache.
+                string pathOfTrace = "trunc_12.dat";
+
+                mhs.ParseMemoryAddress(mhs.ReadMemoryTrace(pathOfTrace));
+
                 Console.WriteLine("\nMemory Hierarchy Simulator");
                 Console.WriteLine("Choose algorithm to simulate:");
                 Console.WriteLine("0. Edit Configuration");
@@ -52,6 +54,9 @@
                 Console.WriteLine("\nEnter any key to continue.");
                 Console.ReadLine();
                 Console.Clear();
+
+                mhs.ResetValues();
+
             }
 
         }

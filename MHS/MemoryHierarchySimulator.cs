@@ -13,13 +13,13 @@ namespace MHS
         public Dictionary<string, string> cache = new Dictionary<string, string>();
 
         public List<MemoryAddress> memoryAddresses = new List<MemoryAddress>();
+
+        public List<string> memoryReferences = new List<string>();
         public int totalHits { get; set; }
         public int totalMisses { get; set; }
         public int readAccesses { get; set; }
         public int writeAccesses { get; set; }
         public int capacityOfCache { get; set; }
-
-        public List<string> memoryReferences = new List<string>();
 
         /// <summary>
         /// Default Constructor that sets properties to 0.
@@ -143,6 +143,17 @@ namespace MHS
             info += $"Total Number of Memory References: {readAccesses + writeAccesses}\n";
 
             return info;
+        }
+
+        public void ResetValues()
+        {
+            cache.Clear();
+            memoryAddresses.Clear();
+            memoryReferences.Clear();
+            totalHits = 0;
+            totalMisses = 0;
+            readAccesses = 0;
+            writeAccesses = 0;
         }
     }
 
