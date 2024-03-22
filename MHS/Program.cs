@@ -51,7 +51,7 @@
                         break;
                 }
 
-                Console.WriteLine("\nEnter any key to continue.");
+                Console.WriteLine("\nPress enter to continue.");
                 Console.ReadLine();
                 Console.Clear();
 
