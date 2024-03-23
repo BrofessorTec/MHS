@@ -34,20 +34,21 @@
                         Environment.Exit(0);
                         break;
                     case "0":
-
+                        // TODO enter config options here
                         break;
                     case "1":
                         FIFO.Run(mhs);
                         Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
                     case "2":
-
+                        // TODO enter Greedy run() here
                         break;
                     case "3":
-
+                        // TODO enter LRU run() here
                         break;
+                    // TODO enter Furthest in Future case 4 run() here?
                     default:
-                        Console.WriteLine("Invalid Number Entered...");
+                        Console.WriteLine("Invalid Entry...");
                         break;
                 }
 
