@@ -26,10 +26,10 @@ namespace MHS {
                         mhs.cache.Remove(accessOrder[0]);
                         accessOrder.RemoveAt(0);
                     }
-                    int correctIndex = Array.IndexOf(cache, null);
-                    cache[correctIndex] = addr.virtualPageNumber;
+                    int index = Array.IndexOf(cache, null);
+                    cache[index] = addr.virtualPageNumber;
                     accessOrder.Add(addr.virtualPageNumber);
-                    mhs.cache[addr.virtualPageNumber] = (correctIndex + 1).ToString();
+                    mhs.cache[addr.virtualPageNumber] = (index + 1).ToString();
                 }
                 addr.physicalPageNumber = mhs.cache[addr.virtualPageNumber];
                 addr.physicalPageOffset = addr.virtualPageOffset;
