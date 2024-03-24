@@ -30,7 +30,7 @@ namespace MHS
             totalMisses = 0;
             readAccesses = 0;
             writeAccesses = 0;
-            capacityOfCache = 4;
+            capacityOfCache = 3;
         }
 
         /// <summary>

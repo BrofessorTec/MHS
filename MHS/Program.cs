@@ -44,7 +44,7 @@
                         // TODO enter Greedy run() here
                         break;
                     case "3":
-                        // TODO enter LRU run() here
+                        LRU.Run(mhs);
                         break;
                     // TODO enter Furthest in Future case 4 run() here?
                     default:
