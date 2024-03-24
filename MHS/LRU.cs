@@ -8,7 +8,7 @@ namespace MHS {
     internal class LRU : ICachingAlgorithm {
         public static void Run(MemoryHierarchySimulator mhs) {
             List<string> accessOrder = new List<string>();
-            string[] cache = new string[3]; //Dictionaries dont have an index so using this
+            string[] cache = new string[mhs.capacityOfCache]; //Dictionaries dont have an index so using this
             foreach (MemoryAddress addr in mhs.memoryAddresses) {
                 if (cache.Contains(addr.virtualPageNumber)) {
                     addr.isHit = true;
