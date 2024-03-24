@@ -44,7 +44,7 @@ namespace MHS
 
             using (StreamReader rdr = new StreamReader(@$"..\..\..\{trace}"))
             {
-                int i = 0;
+                //int i = 0;
                 string line;
                 string[] inputLines;
 
@@ -52,8 +52,8 @@ namespace MHS
                 while ((line = rdr.ReadLine()) != null)
                 {
                     inputLines = line.Split(":");
-                    memoryAddresses.Add(inputLines[i]);
-                    memoryAddresses.Add(inputLines[i + 1]);
+                    memoryAddresses.Add(inputLines[0]);
+                    memoryAddresses.Add(inputLines[1]);
                     //i += 2;
                 }
 
