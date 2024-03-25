@@ -34,7 +34,7 @@ namespace MHS
             this.virtualPageOffset = virtualPageOffset;
             physicalPageNumber = string.Empty;
             physicalPageOffset = string.Empty;  // we could also just make this equal to the virtual offset like the commented line below and then skip that from the algorithm side
-            //this.physicalPageOffset = virtualPageOffset;
+            this.physicalPageOffset = virtualPageOffset;
             isHit = false;
         }
     }
