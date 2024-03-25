@@ -137,7 +137,7 @@ namespace MHS
             info += "\nSummary Statistics:\n";
             info += $"Total Hits: {totalHits}\n";
             info += $"Total Misses: {totalMisses}\n";
-            info += $"Hit Ratio: {totalHits / (double)totalMisses}\n";
+            info += $"Hit Ratio: {Math.Round(totalHits / (double)totalMisses, 2)}:1\n";
             info += $"Hit Percentage: {Math.Round(totalHits / (double)(totalHits + totalMisses)*100, 2)}%\n";
             info += $"Number of Read Accesses: {readAccesses}\n";
             info += $"Number of Write Accesses: {writeAccesses}\n";
