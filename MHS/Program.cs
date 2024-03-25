@@ -72,6 +72,7 @@
                         break;
                     case "3":
                         LRU.Run(mhs);
+                        Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
                     // TODO enter Furthest in Future case 4 run() here?
                     default:

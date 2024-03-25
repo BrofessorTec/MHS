@@ -35,7 +35,7 @@ namespace MHS {
                 addr.physicalPageOffset = addr.virtualPageOffset;
                 mhs.UpdateStatistics(addr);
             }
-            Console.WriteLine(mhs.DisplaySummaryStatistics());
+            // Console.WriteLine(mhs.DisplaySummaryStatistics());
         }
     }
 }
