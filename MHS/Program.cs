@@ -7,15 +7,16 @@
             MemoryHierarchySimulator mhs = new MemoryHierarchySimulator();
 
             bool isRunning = false;
+            //This should likely be put in as one of the options able to be changed with 0. Edit Configuration alongside the capacityOfCache.
+            string pathOfTrace = "trunc_12.dat";
+
 
             while (!isRunning)
             {
-                //This should likely be put in as one of the options able to be changed with 0. Edit Configuration alongside the capacityOfCache.
-                string pathOfTrace = "trunc_12.dat";
 
                 mhs.ParseMemoryAddress(mhs.ReadMemoryTrace(pathOfTrace));
 
-                Console.WriteLine("\nMemory Hierarchy Simulator");
+                Console.WriteLine($"\nMemory Hierarchy Simulator for {pathOfTrace}");
                 Console.WriteLine("Choose algorithm to simulate:");
                 Console.WriteLine("0. Edit Configuration");
                 Console.WriteLine("1. Optimal FIFO Algorithm");
@@ -35,6 +36,27 @@
                         break;
                     case "0":
                         // TODO enter config options here
+                        Console.WriteLine("\nWhat trace would you like to use?" +
+                            "\n1. trunc_12.dat" +
+                            "\n2. trace.dat" +
+                            "\n3. real_tr.dat");
+                        string choice2 = Console.ReadLine();
+                        if (choice2 == "1")
+                        {
+                            pathOfTrace = "trunc_12.dat";
+                        }
+                        else if (choice2 == "2")
+                        {
+                            pathOfTrace = "trace.dat";
+                        }
+                        else if (choice2 == "3")
+                        {
+                            pathOfTrace = "real_tr.dat";
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Entry..");
+                        }
                         break;
                     case "1":
                         FIFO.Run(mhs);
