@@ -21,7 +21,7 @@ namespace MHS
                     {
                         address.isHit = true;
                         address.physicalPageNumber = mhs.cache.GetValueOrDefault(address.virtualPageNumber);
-                        address.physicalPageOffset = address.virtualPageOffset;
+                        address.physicalPageOffset = address.virtualPageOffset;  // i think we could just do this in the constructor and skip all of these physoffset = virtoffsets?
                     }
                     else
                     {

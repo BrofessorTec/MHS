@@ -44,7 +44,7 @@ namespace MHS
 
             using (StreamReader rdr = new StreamReader(@$"..\..\..\{trace}"))
             {
-                int i = 0;
+                //int i = 0;
                 string line;
                 string[] inputLines;
 
@@ -52,8 +52,8 @@ namespace MHS
                 while ((line = rdr.ReadLine()) != null)
                 {
                     inputLines = line.Split(":");
-                    memoryAddresses.Add(inputLines[i]);
-                    memoryAddresses.Add(inputLines[i + 1]);
+                    memoryAddresses.Add(inputLines[0]);
+                    memoryAddresses.Add(inputLines[1]);
                     //i += 2;
                 }
 
@@ -137,6 +137,7 @@ namespace MHS
             info += $"Total Hits: {totalHits}\n";
             info += $"Total Misses: {totalMisses}\n";
             info += $"Hit Ratio: {totalHits / (double)totalMisses}\n";
+            info += $"Hit Percentage: {totalHits / (double)(totalHits + totalMisses)*100}%\n";
             info += $"Number of Read Accesses: {readAccesses}\n";
             info += $"Number of Write Accesses: {writeAccesses}\n";
             info += $"Read/Write Ratio: {readAccesses / (double)writeAccesses}\n";

@@ -21,6 +21,8 @@ namespace MHS
         {
             virtualPageNumber = string.Empty;
             virtualPageOffset = string.Empty;
+            physicalPageNumber = string.Empty;
+            physicalPageOffset = string.Empty;
             isHit = false;
         }
 
@@ -30,6 +32,9 @@ namespace MHS
             this.accessType = accessType;
             this.virtualPageNumber = virtualPageNumber;
             this.virtualPageOffset = virtualPageOffset;
+            physicalPageNumber = string.Empty;
+            physicalPageOffset = string.Empty;  // we could also just make this equal to the virtual offset like the commented line below and then skip that from the algorithm side
+            //this.physicalPageOffset = virtualPageOffset;
             isHit = false;
         }
     }
