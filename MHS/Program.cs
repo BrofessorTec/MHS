@@ -6,12 +6,12 @@
         {
             MemoryHierarchySimulator mhs = new MemoryHierarchySimulator();
 
-            bool isRunning = false;
+            bool isRunning = true;
             //This should likely be put in as one of the options able to be changed with 0. Edit Configuration alongside the capacityOfCache.
             string pathOfTrace = "trunc_12.dat";
 
 
-            while (!isRunning)
+            while (isRunning)
             {
 
                 mhs.ParseMemoryAddress(mhs.ReadMemoryTrace(pathOfTrace));
@@ -31,7 +31,7 @@
                     case "q":
                         Console.WriteLine("\nThanks for using the program, exiting now..");
                         Thread.Sleep(1000);
-                        isRunning = true;
+                        isRunning = false;
                         Environment.Exit(0);
                         break;
                     case "0":
