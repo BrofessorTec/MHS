@@ -22,6 +22,7 @@
                 Console.WriteLine("1. Optimal FIFO Algorithm");
                 Console.WriteLine("2. Optimal Greedy Algorithm");
                 Console.WriteLine("3. Optimal LRU Algorithm");
+                Console.WriteLine("4. Random Algortihm");
                 Console.WriteLine("Q. Quit the program\n");
 
                 string choice = Console.ReadLine();
@@ -69,6 +70,10 @@
                         LRU.Run(mhs);
                         break;
                     // TODO enter Furthest in Future case 4 run() here?
+                    case "4":
+                        Random.Run(mhs);
+                        Console.WriteLine(mhs.DisplaySummaryStatistics());
+                        break;
                     default:
                         Console.WriteLine("Invalid Entry...");
                         break;
