@@ -136,11 +136,11 @@ namespace MHS
             info += "\nSummary Statistics:\n";
             info += $"Total Hits: {totalHits}\n";
             info += $"Total Misses: {totalMisses}\n";
-            info += $"Hit Ratio: {totalHits / (double)totalMisses}\n";
+            info += $"Hit Ratio: {Math.Round(totalHits / (double)totalMisses, 2)}\n";
             info += $"Hit Percentage: {Math.Round(totalHits / (double)(totalHits + totalMisses)*100, 2)}%\n";
             info += $"Number of Read Accesses: {readAccesses}\n";
             info += $"Number of Write Accesses: {writeAccesses}\n";
-            info += $"Read/Write Ratio: {readAccesses / (double)writeAccesses}\n";
+            info += $"Read/Write Ratio: {Math.Round(readAccesses / (double)writeAccesses, 2)}\n";
             info += $"Total Number of Memory References: {readAccesses + writeAccesses}\n";
 
             return info;

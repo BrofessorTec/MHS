@@ -39,6 +39,14 @@ namespace MHS
                         int j = 1;
                         cacheBuffer = new string[mhs.capacityOfCache];
                         // can try to reset the cachebuffer here before each loop
+                        if (index == mhs.capacityOfCache)
+                        {
+                            index = 1;
+                        }
+                        else
+                        {
+                            index++;
+                        }
 
                         while (cacheBuffer.Count() < mhs.capacityOfCache && i < (mhs.memoryAddresses.Count() - mhs.capacityOfCache))
                         {     // attemping to run this until near the end of the cache, probably need to change the if statements around
@@ -71,7 +79,6 @@ namespace MHS
                     mhs.cache[addr.virtualPageNumber] = (index + 1).ToString();
                     */
                     // add the new item to the cache
-                    index++;
                     mhs.cache.Add(addr.virtualPageNumber, index.ToString());
                 }
                 addr.physicalPageNumber = mhs.cache[addr.virtualPageNumber];
