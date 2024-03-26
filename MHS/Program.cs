@@ -64,11 +64,11 @@
                         break;
                     case "2":
                         // TODO enter Greedy run() here
+                        FIF.Run(mhs);
                         break;
                     case "3":
                         LRU.Run(mhs);
                         break;
-                    // TODO enter Furthest in Future case 4 run() here?
                     default:
                         Console.WriteLine("Invalid Entry...");
                         break;
