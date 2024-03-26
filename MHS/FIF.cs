@@ -13,6 +13,7 @@ namespace MHS
         {
             //string[] cache = new string[mhs.capacityOfCache];
             string[] cacheBuffer = new string[mhs.capacityOfCache];  //will add to this if something on the current cache is found in the future and needed?
+            int cacheBufferCount = 0;
             int index = 0;
 
             for (int i = 0; i < mhs.memoryAddresses.Count; i++)
@@ -38,35 +39,33 @@ namespace MHS
                         //remove from cache the one that is not needed in the future
                         int j = 1;
                         cacheBuffer = new string[mhs.capacityOfCache];
+                        //cacheBufferCount = 0;
                         // can try to reset the cachebuffer here before each loop
-                        if (index == mhs.capacityOfCache)
-                        {
-                            index = 1;
-                        }
-                        else
-                        {
-                            index++;
-                        }
 
-                        while (cacheBuffer.Count() < mhs.capacityOfCache && i < (mhs.memoryAddresses.Count() - mhs.capacityOfCache))
+                        while (cacheBufferCount < mhs.capacityOfCache && i < (mhs.memoryAddresses.Count() - mhs.capacityOfCache))
                         {     // attemping to run this until near the end of the cache, probably need to change the if statements around
                             if (mhs.cache.ContainsKey(mhs.memoryAddresses[i + j].virtualPageNumber))
                             {
                                 //add to cache buffer if it is used in future
                                 cacheBuffer.Append(mhs.memoryAddresses[i + j].virtualPageNumber);
+                                cacheBufferCount++;
                             }
                             j++; 
                         }
+                        // might need another statement to check the last elements of the memAddresses when close to the end
+
                         // remove from the real cache
-                        foreach (MemoryAddress address in mhs.memoryAddresses)
+                        // is this the right "in" for the foreach?
+                        foreach (string key in mhs.cache.Keys)
                         {
-                            if (!cacheBuffer.Contains(address.virtualPageNumber))
+                            if (!cacheBuffer.Contains(key))
                             {
-                                mhs.cache.Remove(address.virtualPageNumber);
+                                mhs.cache.Remove(key);
                                 break;
                                 //intending for this to just remove the first item that is not in the cachebuffer and then exit the loop
                             }
                         }
+
 
                         // could add a line if there is no change in the cache buffer then to not clear it and keep it until the end if values are the same
                         // or near the end of the addresses, skips some checking?
@@ -79,6 +78,14 @@ namespace MHS
                     mhs.cache[addr.virtualPageNumber] = (index + 1).ToString();
                     */
                     // add the new item to the cache
+                    if (index == mhs.capacityOfCache)
+                    {
+                        index = 1;
+                    }
+                    else
+                    {
+                        index++;
+                    }
                     mhs.cache.Add(addr.virtualPageNumber, index.ToString());
                 }
                 addr.physicalPageNumber = mhs.cache[addr.virtualPageNumber];
