@@ -14,8 +14,9 @@
             {
                 mhs.ParseMemoryAddress(mhs.ReadMemoryTrace(pathOfTrace));
 
-                Console.WriteLine($"\nMemory Hierarchy Simulator for {pathOfTrace} with cache size {mhs.capacityOfCache}");
-                Console.WriteLine("Choose algorithm to simulate:");
+                Console.Clear();
+                Console.WriteLine($"Memory Hierarchy Simulator for {pathOfTrace} with cache size {mhs.capacityOfCache}");
+                Console.WriteLine("\nChoose algorithm to simulate:");
                 Console.WriteLine("0. Edit Configuration");
                 Console.WriteLine("1. FIFO Algorithm");
                 Console.WriteLine("2. Furthest in Future Algorithm");
@@ -35,7 +36,8 @@
                         break;
                     case "0":
                         // TODO enter config options here
-                        Console.WriteLine("\nWhat option would you like to change?" +
+                        Console.Clear();
+                        Console.WriteLine("What option would you like to change?" +
                             "\n1. Use trunc_12.dat" +
                             "\n2. Use trace.dat" +
                             "\n3. Use real_tr.dat" +
@@ -55,6 +57,7 @@
                         } 
                         else if (choice2 == "4")
                         {
+                            Console.Clear();
                             Console.WriteLine("What cache size would you like to use?");
                             mhs.capacityOfCache = int.Parse(Console.ReadLine());
                         }
