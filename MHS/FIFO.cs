@@ -17,7 +17,7 @@ namespace MHS
             {
                 if (queue.Count < mhs.capacityOfCache)
                 {
-                    if (queue.Contains(address.virtualPageNumber))
+                    if (mhs.cache.ContainsKey(address.virtualPageNumber))
                     {
                         address.isHit = true;
                         address.physicalPageNumber = mhs.cache.GetValueOrDefault(address.virtualPageNumber);
@@ -37,7 +37,7 @@ namespace MHS
                     }
                 }
 
-                if (queue.Contains(address.virtualPageNumber))
+                else if (mhs.cache.ContainsKey(address.virtualPageNumber))
                 {
                     address.isHit = true;
                     address.physicalPageNumber = mhs.cache.GetValueOrDefault(address.virtualPageNumber);
