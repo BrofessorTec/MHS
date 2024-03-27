@@ -69,24 +69,28 @@
                     case "1":
                         Console.Clear();
                         Console.WriteLine("Trace, Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset, hit/miss\n");
+                        mhs.algoName = "FIFO";
                         FIFO.Run(mhs);
                         Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
                     case "2":
                         Console.Clear();
                         Console.WriteLine("Trace, Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset, hit/miss\n");
+                        mhs.algoName = "FIF";
                         FIF.Run(mhs);
                         Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
                     case "3":
                         Console.Clear();
                         Console.WriteLine("Trace, Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset, hit/miss\n");
+                        mhs.algoName = "LRU";
                         LRU.Run(mhs);
                         Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
                     case "4":
                         Console.Clear();
                         Console.WriteLine("Trace, Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset, hit/miss\n");
+                        mhs.algoName = "Random";
                         Random.Run(mhs);
                         Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;

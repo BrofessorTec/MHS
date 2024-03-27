@@ -20,6 +20,8 @@ namespace MHS
         public int writeAccesses { get; set; }
         public int capacityOfCache { get; set; }
 
+        public string algoName {  get; set; }
+
         /// <summary>
         /// Default Constructor that sets properties to 0.
         /// </summary>
@@ -135,10 +137,13 @@ namespace MHS
             //info += "\nTrace, Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset, hit/miss\n";
 
             info += "\nSummary Statistics:\n";
+            info += $"Algorithm: {algoName}\n";
+            info += $"Cache Size: {capacityOfCache}\n";
             info += $"Total Hits: {totalHits}\n";
             info += $"Total Misses: {totalMisses}\n";
-            info += $"Hit Ratio: {Math.Round(totalHits / (double)totalMisses, 2)}\n";
+            info += $"Hit/Miss Ratio: {Math.Round(totalHits / (double)totalMisses, 2)}\n";
             info += $"Hit Percentage: {Math.Round(totalHits / (double)(totalHits + totalMisses)*100, 2)}%\n";
+            info += $"Miss Percentage: {Math.Round(totalMisses / (double)(totalHits + totalMisses) * 100, 2)}%\n";
             info += $"Number of Read Accesses: {readAccesses}\n";
             info += $"Number of Write Accesses: {writeAccesses}\n";
             if (writeAccesses == 0)
