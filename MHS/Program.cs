@@ -16,7 +16,7 @@
 
                 mhs.ParseMemoryAddress(mhs.ReadMemoryTrace(pathOfTrace));
 
-                Console.WriteLine($"\nMemory Hierarchy Simulator for {pathOfTrace}");
+                Console.WriteLine($"\nMemory Hierarchy Simulator for {pathOfTrace} with cache size {mhs.capacityOfCache}");
                 Console.WriteLine("Choose algorithm to simulate:");
                 Console.WriteLine("0. Edit Configuration");
                 Console.WriteLine("1. FIFO Algorithm");
@@ -37,11 +37,11 @@
                         break;
                     case "0":
                         // TODO enter config options here
-                        Console.WriteLine("\nWhat trace would you like to use?" +
-                            "\n1. trunc_12.dat" +
-                            "\n2. trace.dat" +
-                            "\n3. real_tr.dat" +
-                            "\n4. example.dat");
+                        Console.WriteLine("\nWhat option would you like to change?" +
+                            "\n1. Use trunc_12.dat" +
+                            "\n2. Use trace.dat" +
+                            "\n3. Use real_tr.dat" +
+                            "\n4. Change Cache Size");
                         string choice2 = Console.ReadLine();
                         if (choice2 == "1")
                         {
@@ -55,10 +55,11 @@
                         {
                             pathOfTrace = "real_tr.dat";
                         } 
-                        else if (choice2 == "4") 
+                        else if (choice2 == "4")
                         {
-                            pathOfTrace = "example.dat";
-                        } 
+                            Console.WriteLine("What cache size would you like to use?");
+                            mhs.capacityOfCache = int.Parse(Console.ReadLine());
+                        }
                         else
                         {
                             Console.WriteLine("Invalid Entry..");
