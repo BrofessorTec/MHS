@@ -115,6 +115,7 @@ namespace MHS
             {
                 writeAccesses++;
             }
+            Console.WriteLine(memoryReference);
         }
 
         //Pretty much just copied this from the old code. Maybe needs work.
@@ -128,10 +129,10 @@ namespace MHS
 
             info += "\nVirtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset\n";
 
-            foreach (string reference in memoryReferences)
-            {
-                info += reference;
-            }
+            //foreach (string reference in memoryReferences)
+            //{
+            //    info += reference;
+            //}
 
             info += "\nSummary Statistics:\n";
             info += $"Total Hits: {totalHits}\n";

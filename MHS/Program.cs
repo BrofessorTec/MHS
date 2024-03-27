@@ -39,7 +39,8 @@
                         Console.WriteLine("\nWhat trace would you like to use?" +
                             "\n1. trunc_12.dat" +
                             "\n2. trace.dat" +
-                            "\n3. real_tr.dat");
+                            "\n3. real_tr.dat" +
+                            "\n4. example.dat");
                         string choice2 = Console.ReadLine();
                         if (choice2 == "1")
                         {
@@ -52,7 +53,11 @@
                         else if (choice2 == "3")
                         {
                             pathOfTrace = "real_tr.dat";
-                        }
+                        } 
+                        else if (choice2 == "4") 
+                        {
+                            pathOfTrace = "example.dat";
+                        } 
                         else
                         {
                             Console.WriteLine("Invalid Entry..");
@@ -68,6 +73,7 @@
                         break;
                     case "3":
                         LRU.Run(mhs);
+                        Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
                     default:
                         Console.WriteLine("Invalid Entry...");

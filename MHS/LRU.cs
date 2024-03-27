@@ -12,11 +12,7 @@ namespace MHS {
             foreach (MemoryAddress addr in mhs.memoryAddresses) {
                 if (cache.Contains(addr.virtualPageNumber)) {
                     addr.isHit = true;
-                    /* constantly removes the oldest element and renews it if it repeats so that it is considered recently used
-                     * ex: b, d, 6 -> d, 6, f
-                     * ^ d and 6 are shifted left since the the b is removed, f (the most recently used) is added onto the end.
-                     * ex2: b -> if the next element is also b, the b is removed and the new b is added
-                     */
+                    // constantly removes the oldest element and renews it if it repeats so that it is considered recently used
                     accessOrder.Remove(addr.virtualPageNumber);
                     accessOrder.Add(addr.virtualPageNumber);                    
                 } else {
@@ -35,7 +31,6 @@ namespace MHS {
                 addr.physicalPageOffset = addr.virtualPageOffset; //can do this in constructor
                 mhs.UpdateStatistics(addr);
             }
-            Console.WriteLine(mhs.DisplaySummaryStatistics());
         }
     }
 }
