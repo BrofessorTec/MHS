@@ -67,18 +67,22 @@
                         }
                         break;
                     case "1":
+                        Console.Clear();
                         FIFO.Run(mhs);
                         Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
                     case "2":
-                        // TODO enter Greedy run() here
+                        Console.Clear();
                         FIF.Run(mhs);
+                        Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
                     case "3":
+                        Console.Clear();
                         LRU.Run(mhs);
                         Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
                     case "4":
+                        Console.Clear();
                         Random.Run(mhs);
                         Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;

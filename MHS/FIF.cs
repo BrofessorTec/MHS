@@ -75,7 +75,6 @@ namespace MHS
                 addr.physicalPageOffset = addr.virtualPageOffset; //can do this in constructor
                 mhs.UpdateStatistics(addr);
             }
-            Console.WriteLine(mhs.DisplaySummaryStatistics());
         }
     }
 }
