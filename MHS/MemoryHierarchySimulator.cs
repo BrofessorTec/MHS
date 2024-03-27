@@ -79,7 +79,6 @@ namespace MHS
 
                 memoryAddresses.Add(memoryAddress);
             }
-
             return memoryAddresses;
         }
 
@@ -101,13 +100,11 @@ namespace MHS
             if (memoryAddress.accessType == 'R')
                 readAccesses++;
             else if (memoryAddress.accessType == 'W')
-                writeAccesses++;
-            
+                writeAccesses++;            
 
             string memoryReference = $"{memoryAddress.accessType}:{memoryAddress.virtualPageNumber}{memoryAddress.virtualPageOffset} , {memoryAddress.virtualPageNumber} , {memoryAddress.virtualPageOffset} , {memoryAddress.physicalPageNumber} , {memoryAddress.physicalPageOffset}, {hitormiss}\n";
 
             memoryReferences.Add(memoryReference);
-
             
             Console.WriteLine(memoryReference);
         }
