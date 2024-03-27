@@ -60,6 +60,11 @@ namespace MHS
         //    return memoryAddresses;
         //}
 
+        /// <summary>
+        /// Reads and Parses the memory trace and converts the input file to a list of memory addresses.
+        /// </summary>
+        /// <param name="trace">The path of the trace to be read.</param>
+        /// <returns>A list of strings of memory addresses.</returns>
         public void ReadMemoryTrace(string trace) {
             using (StreamReader rdr = new StreamReader(@$"..\..\..\{trace}")) {                
                 while (!rdr.EndOfStream) {                  
@@ -133,9 +138,7 @@ namespace MHS
         public string DisplaySummaryStatistics()
         {
             string info = string.Empty;
-
             //info += "\nTrace, Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset, hit/miss\n";
-
             info += "\nSummary Statistics:\n";
             info += $"Algorithm: {algoName}\n";
             info += $"Cache Size: {capacityOfCache}\n";
@@ -146,16 +149,13 @@ namespace MHS
             info += $"Miss Percentage: {Math.Round(totalMisses / (double)(totalHits + totalMisses) * 100, 2)}%\n";
             info += $"Number of Read Accesses: {readAccesses}\n";
             info += $"Number of Write Accesses: {writeAccesses}\n";
-            if (writeAccesses == 0)
-            {
-                info += $"Read/Write Ratio: {readAccesses}:{writeAccesses}\n";
-            }
-            else
-            {
-                info += $"Read/Write Ratio: {Math.Round(readAccesses / (double)writeAccesses, 2)}\n";
-            }
-            info += $"Total Number of Memory References: {readAccesses + writeAccesses}\n";
 
+            if (writeAccesses == 0)            
+                info += $"Read/Write Ratio: {readAccesses}:{writeAccesses}\n";            
+            else            
+                info += $"Read/Write Ratio: {Math.Round(readAccesses / (double)writeAccesses, 2)}\n";
+            
+            info += $"Total Number of Memory References: {readAccesses + writeAccesses}\n";
             return info;
         }
 

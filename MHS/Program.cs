@@ -38,7 +38,7 @@
                             "\n2. Use trace.dat" +
                             "\n3. Use real_tr.dat" +
                             "\n4. Change Cache Size" +
-                            "\n5. Chane Page Length");
+                            "\n5. Change Page Length");
                         string choice2 = Console.ReadLine();
                         if (choice2 == "1")
                         {
