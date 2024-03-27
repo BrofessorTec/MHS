@@ -11,9 +11,7 @@ namespace MHS
     {
         public static void Run(MemoryHierarchySimulator mhs)
         {
-            //string[] cache = new string[mhs.capacityOfCache];
-            List<string> cacheBuffer = new List<string>(4);  //will add to this if something on the current cache is found in the future and needed?
-            //int cacheBufferCount = 0; // probably not needed now for a list
+            List<string> cacheBuffer = new List<string>(mhs.capacityOfCache);
             int index = 0;
             int indexToRemove = 0;
             int initialIndex = 0;
@@ -32,22 +30,11 @@ namespace MHS
                     addr.isHit = false;
                     if (mhs.cache.Count >= mhs.capacityOfCache)
                     {
-                        /*
-                        cache[Array.IndexOf(cache, accessOrder[0])] = null;
-                        mhs.cache.Remove(accessOrder[0]);
-                        accessOrder.RemoveAt(0);
-                        */
 
                         //remove from cache the one that is not needed in the future
                         int j = 1;
                         cacheBuffer.Clear();
-                        /*foreach (string key in mhs.cache.Keys)
-                        {
-                            // adds current cache to check if it is in the future?
-                            cacheBuffer.Add(key);
-                        }*/
-                        //cacheBufferCount = 0;
-                        // can try to reset the cachebuffer here before each loop
+                        // can try to reset the cachebuffer here before each loop. probably more efficient ways to do this
 
                         while (cacheBuffer.Count < (mhs.capacityOfCache - 1) && (i + j) < (mhs.memoryAddresses.Count() - mhs.capacityOfCache - 1))
                         {     // attemping to run this until near the end of the cache, probably need to change the if statements around
@@ -58,10 +45,9 @@ namespace MHS
                             }
                             j++; 
                         }
-                        // might need another statement to check the last elements of the memAddresses when close to the end
+                        // might need another statement to check the last elements of the memAddresses when close to the end?
 
                         // remove from the real cache
-                        // is this the right "in" for the foreach?
                         foreach (string key in mhs.cache.Keys)
                         {
                             if (!cacheBuffer.Contains(key))
@@ -72,35 +58,10 @@ namespace MHS
                                 //intending for this to just remove the first item that is not in the cachebuffer and then exit the loop
                             }
                         }
-
-
-                        // could add a line if there is no change in the cache buffer then to not clear it and keep it until the end if values are the same
-                        // or near the end of the addresses, skips some checking?
-
                     }
-                    /*
-                    int index = Array.IndexOf(cache, null);
-                    cache[index] = addr.virtualPageNumber;
-                    accessOrder.Add(addr.virtualPageNumber);
-                    mhs.cache[addr.virtualPageNumber] = (index + 1).ToString();
-                    */
-                    // add the new item to the cache
-                    /*if (cacheBuffer.Contains("-1"))
-                    { // maybe not needed now with list?
-                        index = cacheBuffer.ToList().IndexOf("-1");
-                    }*/
+
                     if (initialIndex < mhs.capacityOfCache)
                     {
-                        /*if (index == mhs.capacityOfCache)
-                        {
-                            index = 1;
-                            initialIndex++;
-                        }
-                        else
-                        {
-                            index++;
-                            initialIndex++;
-                        }*/
                         index++;
                         initialIndex++;
                     }
