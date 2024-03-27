@@ -141,7 +141,14 @@ namespace MHS
             info += $"Hit Percentage: {Math.Round(totalHits / (double)(totalHits + totalMisses)*100, 2)}%\n";
             info += $"Number of Read Accesses: {readAccesses}\n";
             info += $"Number of Write Accesses: {writeAccesses}\n";
-            info += $"Read/Write Ratio: {Math.Round(readAccesses / (double)writeAccesses, 2)}\n";
+            if (writeAccesses == 0)
+            {
+                info += $"Read/Write Ratio: {readAccesses}:{writeAccesses}\n";
+            }
+            else
+            {
+                info += $"Read/Write Ratio: {Math.Round(readAccesses / (double)writeAccesses, 2)}\n";
+            }
             info += $"Total Number of Memory References: {readAccesses + writeAccesses}\n";
 
             return info;
