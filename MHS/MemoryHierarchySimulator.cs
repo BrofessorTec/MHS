@@ -19,7 +19,6 @@ namespace MHS
         public int readAccesses { get; set; }
         public int writeAccesses { get; set; }
         public int capacityOfCache { get; set; }
-
         public string algoName {  get; set; }
 
         /// <summary>
@@ -34,31 +33,6 @@ namespace MHS
             capacityOfCache = 4;
             pageLength = 1;
         }
-
-        /// <summary>
-        /// Reads the memory trace and converts the input file to a list of memory addresses.
-        /// </summary>
-        /// <param name="trace">The path of the trace to be read.</param>
-        /// <returns>A list of strings of memory addresses.</returns>
-        //public List<string> ReadMemoryTrace(string trace)
-        //{
-        //    List<string> memoryAddresses = new List<string>();
-
-        //    using (StreamReader rdr = new StreamReader(@$"..\..\..\{trace}"))
-        //    {
-        //        string line;
-        //        string[] inputLines;
-
-        //        while ((line = rdr.ReadLine()) != null)
-        //        {
-        //            inputLines = line.Split(":");
-        //            memoryAddresses.Add(inputLines[0]);
-        //            memoryAddresses.Add(inputLines[1]);
-        //        }
-        //        rdr.Close();
-        //    }
-        //    return memoryAddresses;
-        //}
 
         /// <summary>
         /// Reads and Parses the memory trace and converts the input file to a list of memory addresses.
@@ -78,30 +52,6 @@ namespace MHS
                 }
             }
         }
-
-        ///// <summary>
-        ///// Parses a list of strings of memory address into a list of memory address objects.
-        ///// </summary>
-        ///// <param name="addresses">A list of strings of memory addresses.</param>
-        ///// <returns>A list of memory address objects.</returns>
-        //public List<MemoryAddress> ParseMemoryAddress(List<string> addresses)
-        //{
-        //    for (int i = 0; i < addresses.Count; i += 2)
-        //    {
-        //        char accessType;
-        //        string pageNumber;
-        //        string pageOffset;
-
-        //        accessType = char.Parse(addresses[i]);
-        //        pageNumber = addresses[i + 1][0].ToString();
-        //        pageOffset = addresses[i + 1].Substring(1);
-
-        //        MemoryAddress memoryAddress = new MemoryAddress(accessType, pageNumber, pageOffset);
-
-        //        memoryAddresses.Add(memoryAddress);
-        //    }
-        //    return memoryAddresses;
-        //}
 
         /// <summary>
         /// Takes in a memory address object and uses it to update the statistics of the simulator.
@@ -126,7 +76,6 @@ namespace MHS
             string memoryReference = $"{memoryAddress.accessType}:{memoryAddress.virtualPageNumber}{memoryAddress.virtualPageOffset} , {memoryAddress.virtualPageNumber} , {memoryAddress.virtualPageOffset} , {memoryAddress.physicalPageNumber} , {memoryAddress.physicalPageOffset}, {hitormiss}\n";
 
             memoryReferences.Add(memoryReference);
-            
             Console.WriteLine(memoryReference);
         }
 
@@ -138,7 +87,7 @@ namespace MHS
         public string DisplaySummaryStatistics()
         {
             string info = string.Empty;
-            //info += "\nTrace, Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset, hit/miss\n";
+            info += "\nTrace, Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset, hit/miss\n";
             info += "\nSummary Statistics:\n";
             info += $"Algorithm: {algoName}\n";
             info += $"Cache Size: {capacityOfCache}\n";
@@ -171,4 +120,3 @@ namespace MHS
         }
     }
 }
-
