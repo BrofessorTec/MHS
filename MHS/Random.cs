@@ -13,41 +13,38 @@ namespace MHS
 
         public static void Run(MemoryHierarchySimulator mhs)
         {
-            List<string> accessOrder = new List<string>(); // Keep track of access order
-            Dictionary<string, string> cache = new Dictionary<string, string>();
+            List<string> accessOrder = new List<string>();
+            string[] cache = new string[mhs.capacityOfCache];
 
             foreach (MemoryAddress addr in mhs.memoryAddresses)
             {
-                // Check if the virtual page is in the cache
-                if (cache.ContainsKey(addr.virtualPageNumber))
+                if (cache.Contains(addr.virtualPageNumber))
                 {
-                    // Cache hit
                     addr.isHit = true;
                 }
                 else
                 {
-                    // Cache miss
                     addr.isHit = false;
 
-                    if (cache.Count >= mhs.capacityOfCache)
+                    if (mhs.cache.Count >= mhs.capacityOfCache)
                     {
                         // Cache is full, randomly select a page to evict
-                        int randomIndex = random.Next(cache.Count);
-                        string pageToEvict = accessOrder[randomIndex]; // Get the page from accessOrder list
-                        cache.Remove(pageToEvict); // Evict the randomly selected page
-                        accessOrder.RemoveAt(randomIndex); // Remove the page from accessOrder list
+                        int randomIndex = random.Next(accessOrder.Count); // Use the count of elements in accessOrder
+                        string pageToEvict = accessOrder[randomIndex];
+                        int cacheIndex = Array.IndexOf(cache, pageToEvict); // Get the index of the page in cache
+                        cache[cacheIndex] = null; // Evict the randomly selected page from cache
+                        mhs.cache.Remove(pageToEvict);
+                        accessOrder.RemoveAt(randomIndex); // Remove the randomly selected page from accessOrder
                     }
 
-                    // Add the new page to the cache
-                    cache[addr.virtualPageNumber] = addr.virtualPageNumber;
-                    accessOrder.Add(addr.virtualPageNumber); // Add the page to accessOrder list
+                    int index = Array.IndexOf(cache, null);
+                    cache[index] = addr.virtualPageNumber;
+                    accessOrder.Add(addr.virtualPageNumber);
+                    mhs.cache[addr.virtualPageNumber] = (index + 1).ToString();
                 }
 
-                // Update physical page number
-                addr.physicalPageNumber = mhs.cache.GetValueOrDefault(addr.virtualPageNumber);
-                //addr.physicalPageOffset = addr.virtualPageOffset;
-
-                // Update statistics
+                addr.physicalPageNumber = mhs.cache[addr.virtualPageNumber];
+                addr.physicalPageOffset = addr.virtualPageOffset;
                 mhs.UpdateStatistics(addr);
             }
         }
