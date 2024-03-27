@@ -64,7 +64,7 @@
                         Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
                     case "2":
-                        Greedy.Run(mhs);
+                        //Greedy.Run(mhs);
                         break;
                     case "3":
                         LRU.Run(mhs);

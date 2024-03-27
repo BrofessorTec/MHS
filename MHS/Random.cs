@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,12 +9,14 @@ namespace MHS
 {
     internal class Random : ICachingAlgorithm
     {
+        //The "System." is needed for Next() to work
         private static System.Random random = new System.Random();
-
+        
         public static void Run(MemoryHierarchySimulator mhs)
         {
             // Initialize cache
             Dictionary<string, string> cache = new Dictionary<string, string>();
+            
 
             foreach (MemoryAddress addr in mhs.memoryAddresses)
             {
@@ -22,6 +25,9 @@ namespace MHS
                 {
                     // Cache hit
                     addr.isHit = true;
+                    addr.physicalPageNumber = mhs.cache.GetValueOrDefault(addr.virtualPageNumber);
+                    addr.physicalPageOffset = addr.virtualPageOffset;
+
                 }
                 else
                 {
@@ -34,6 +40,7 @@ namespace MHS
                         int randomIndex = random.Next(cache.Count);
                         string pageToEvict = cache.Keys.ElementAt(randomIndex);
                         cache.Remove(pageToEvict); // Evict the randomly selected page
+                        
                     }
 
                     // Add the new page to the cache
