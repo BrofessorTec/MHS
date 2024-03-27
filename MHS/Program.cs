@@ -19,9 +19,9 @@
                 Console.WriteLine($"\nMemory Hierarchy Simulator for {pathOfTrace}");
                 Console.WriteLine("Choose algorithm to simulate:");
                 Console.WriteLine("0. Edit Configuration");
-                Console.WriteLine("1. Optimal FIFO Algorithm");
-                Console.WriteLine("2. Optimal Greedy Algorithm");
-                Console.WriteLine("3. Optimal LRU Algorithm");
+                Console.WriteLine("1. FIFO Algorithm");
+                Console.WriteLine("2. Furthest in Future Algorithm");
+                Console.WriteLine("3. LRU Algorithm");
                 Console.WriteLine("Q. Quit the program\n");
 
                 string choice = Console.ReadLine();

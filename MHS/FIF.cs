@@ -12,9 +12,11 @@ namespace MHS
         public static void Run(MemoryHierarchySimulator mhs)
         {
             //string[] cache = new string[mhs.capacityOfCache];
-            string[] cacheBuffer = new string[mhs.capacityOfCache];  //will add to this if something on the current cache is found in the future and needed?
-            int cacheBufferCount = 0;
+            List<string> cacheBuffer = new List<string>(4);  //will add to this if something on the current cache is found in the future and needed?
+            //int cacheBufferCount = 0; // probably not needed now for a list
             int index = 0;
+            int indexToRemove = 0;
+            int initialIndex = 0;
 
             for (int i = 0; i < mhs.memoryAddresses.Count; i++)
             {
@@ -38,17 +40,21 @@ namespace MHS
 
                         //remove from cache the one that is not needed in the future
                         int j = 1;
-                        cacheBuffer = new string[mhs.capacityOfCache];
+                        cacheBuffer.Clear();
+                        /*foreach (string key in mhs.cache.Keys)
+                        {
+                            // adds current cache to check if it is in the future?
+                            cacheBuffer.Add(key);
+                        }*/
                         //cacheBufferCount = 0;
                         // can try to reset the cachebuffer here before each loop
 
-                        while (cacheBufferCount < mhs.capacityOfCache && i < (mhs.memoryAddresses.Count() - mhs.capacityOfCache))
+                        while (cacheBuffer.Count < (mhs.capacityOfCache - 1) && (i + j) < (mhs.memoryAddresses.Count() - mhs.capacityOfCache - 1))
                         {     // attemping to run this until near the end of the cache, probably need to change the if statements around
-                            if (mhs.cache.ContainsKey(mhs.memoryAddresses[i + j].virtualPageNumber))
+                            if (mhs.cache.ContainsKey(mhs.memoryAddresses[i + j].virtualPageNumber) && !cacheBuffer.Contains(mhs.memoryAddresses[i + j].virtualPageNumber))
                             {
                                 //add to cache buffer if it is used in future
-                                cacheBuffer.Append(mhs.memoryAddresses[i + j].virtualPageNumber);
-                                cacheBufferCount++;
+                                cacheBuffer.Add(mhs.memoryAddresses[i + j].virtualPageNumber);
                             }
                             j++; 
                         }
@@ -60,6 +66,7 @@ namespace MHS
                         {
                             if (!cacheBuffer.Contains(key))
                             {
+                                indexToRemove = int.Parse(mhs.cache[key]);
                                 mhs.cache.Remove(key);
                                 break;
                                 //intending for this to just remove the first item that is not in the cachebuffer and then exit the loop
@@ -78,13 +85,28 @@ namespace MHS
                     mhs.cache[addr.virtualPageNumber] = (index + 1).ToString();
                     */
                     // add the new item to the cache
-                    if (index == mhs.capacityOfCache)
+                    /*if (cacheBuffer.Contains("-1"))
+                    { // maybe not needed now with list?
+                        index = cacheBuffer.ToList().IndexOf("-1");
+                    }*/
+                    if (initialIndex < mhs.capacityOfCache)
                     {
-                        index = 1;
+                        /*if (index == mhs.capacityOfCache)
+                        {
+                            index = 1;
+                            initialIndex++;
+                        }
+                        else
+                        {
+                            index++;
+                            initialIndex++;
+                        }*/
+                        index++;
+                        initialIndex++;
                     }
                     else
                     {
-                        index++;
+                        index = indexToRemove;
                     }
                     mhs.cache.Add(addr.virtualPageNumber, index.ToString());
                 }
