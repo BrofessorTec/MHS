@@ -121,7 +121,7 @@ namespace MHS
         {
             string info = string.Empty;
 
-            info += "\nTrace, Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset\n";
+            info += "\nTrace, Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset, hit/miss\n";
 
             info += "\nSummary Statistics:\n";
             info += $"Total Hits: {totalHits}\n";
