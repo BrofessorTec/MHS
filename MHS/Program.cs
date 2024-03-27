@@ -5,15 +5,12 @@
         public static void Main()
         {
             MemoryHierarchySimulator mhs = new MemoryHierarchySimulator();
-
             bool isRunning = true;
-            //This should likely be put in as one of the options able to be changed with 0. Edit Configuration alongside the capacityOfCache.
             string pathOfTrace = "trunc_12.dat";
-
+            
             while (isRunning)
             {
-                mhs.ParseMemoryAddress(mhs.ReadMemoryTrace(pathOfTrace));
-
+                mhs.ReadMemoryTrace(pathOfTrace);
                 Console.Clear();
                 Console.WriteLine($"Memory Hierarchy Simulator for {pathOfTrace} with cache size {mhs.capacityOfCache}");
                 Console.WriteLine("\nChoose algorithm to simulate:");
@@ -35,13 +32,13 @@
                         Environment.Exit(0);
                         break;
                     case "0":
-                        // TODO enter config options here
                         Console.Clear();
                         Console.WriteLine("What option would you like to change?" +
                             "\n1. Use trunc_12.dat" +
                             "\n2. Use trace.dat" +
                             "\n3. Use real_tr.dat" +
-                            "\n4. Change Cache Size");
+                            "\n4. Change Cache Size" +
+                            "\n5. Chane Page Length");
                         string choice2 = Console.ReadLine();
                         if (choice2 == "1")
                         {
@@ -60,8 +57,11 @@
                             Console.Clear();
                             Console.WriteLine("What cache size would you like to use?");
                             mhs.capacityOfCache = int.Parse(Console.ReadLine());
-                        }
-                        else
+                        } else if (choice2 == "5") {
+                            Console.Clear();
+                            Console.WriteLine("Enter Page Length?");
+                            mhs.pageLength = int.Parse(Console.ReadLine());
+                        } else
                         {
                             Console.WriteLine("Invalid Entry..");
                         }
