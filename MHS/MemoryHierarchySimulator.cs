@@ -94,7 +94,7 @@ namespace MHS
         /// <param name="memoryAddress">A memory address object.</param>
         public void UpdateStatistics(MemoryAddress memoryAddress)
         {
-            string memoryReference = $"{memoryAddress.virtualPageNumber} , {memoryAddress.virtualPageOffset} , {memoryAddress.physicalPageNumber} , {memoryAddress.physicalPageOffset}\n";
+            string memoryReference = $"{memoryAddress.accessType}:{memoryAddress.virtualPageNumber}{memoryAddress.virtualPageOffset} , {memoryAddress.virtualPageNumber} , {memoryAddress.virtualPageOffset} , {memoryAddress.physicalPageNumber} , {memoryAddress.physicalPageOffset}\n";
 
             memoryReferences.Add(memoryReference);
 
@@ -127,12 +127,7 @@ namespace MHS
         {
             string info = string.Empty;
 
-            info += "\nVirtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset\n";
-
-            //foreach (string reference in memoryReferences)
-            //{
-            //    info += reference;
-            //}
+            info += "\nTrace, Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset\n";
 
             info += "\nSummary Statistics:\n";
             info += $"Total Hits: {totalHits}\n";
@@ -165,127 +160,5 @@ namespace MHS
             writeAccesses = 0;
         }
     }
-
-
-    /*
-    internal class MemoryHierarchySimulator
-    {
-        static Dictionary<int, int> pageTable = new Dictionary<int, int>();
-        static LinkedList<int> lruQueue = new LinkedList<int>();
-        static Queue<int> fifoQueue = new Queue<int>();
-
-        static int totalHits = 0;
-        static int totalMisses = 0;
-        static int readAccesses = 0;
-        static int writeAccesses = 0;
-
-
-        public void ProcessMemoryTrace(string line, Func<int, bool> algorithm)
-        {
-            string[] parts = line.Split(':');
-            char accessType = parts[0][0];
-            int virtualAddress = Convert.ToInt32(parts[1], 16);
-
-            int virtualPageNumber = virtualAddress >> 12;
-            int pageOffset = virtualAddress & 0xFFF;
-
-            bool isHit = algorithm(virtualPageNumber);
-
-            Console.WriteLine($"{virtualAddress:X8} {virtualPageNumber:X6} {pageOffset:X4} {pageTable[virtualPageNumber]:X4}");
-
-            UpdateStatistics(isHit, accessType);
-        }
-
-        public void OptimalGreedyAlgorithm()
-        {
-            Console.WriteLine("Simulating Optimal Greedy Algorithm");
-
-            // Read memory traces from a file
-            // needs to be a relative file path
-            string[] lines = File.ReadAllLines(@"..\..\..\trunc_12.dat");
-
-            foreach (string line in lines)
-            {
-                ProcessMemoryTrace(line, OptimalGreedyAlgorithm);
-            }
-        }
-
-        public bool OptimalGreedyAlgorithm(int virtualPageNumber)
-        {
-            if (pageTable.ContainsKey(virtualPageNumber))
-            {
-                // Existing page, it's a hit
-                return true;
-            }
-            else
-            {
-                // Page fault - update page table
-                pageTable[virtualPageNumber] = pageTable.Count;
-                return false;
-            }
-        }
-
-        public bool OptimalFIFOAlgorithm(int virtualPageNumber)
-        {
-            bool isHit = pageTable.ContainsKey(virtualPageNumber);
-
-            if (!isHit)
-            {
-                // Page fault - update page table and FIFO queue
-                pageTable[virtualPageNumber] = pageTable.Count;
-                fifoQueue.Enqueue(virtualPageNumber);
-            }
-
-            return isHit;
-        }
-
-        public bool OptimalLRUAlgorithm(int virtualPageNumber)
-        {
-            bool isHit = lruQueue.Contains(virtualPageNumber);
-
-            if (!isHit)
-            {
-                // Page fault - update page table and LRU queue
-                pageTable[virtualPageNumber] = pageTable.Count;
-                lruQueue.RemoveLast(); // Remove the least recently used page
-                lruQueue.AddFirst(virtualPageNumber);
-            }
-            else
-            {
-                // Update the order in the LRU queue for hits
-                lruQueue.Remove(virtualPageNumber);
-                lruQueue.AddFirst(virtualPageNumber);
-            }
-
-            return isHit;
-        }
-
-        public void UpdateStatistics(bool isHit, char accessType)
-        {
-            if (isHit)
-                totalHits++;
-            else
-                totalMisses++;
-
-            if (accessType == 'R')
-                readAccesses++;
-            else if (accessType == 'W')
-                writeAccesses++;
-        }
-
-        public void DisplaySummaryStatistics()
-        {
-            Console.WriteLine("\nSummary Statistics:");
-            Console.WriteLine($"Total Hits: {totalHits}");
-            Console.WriteLine($"Total Misses: {totalMisses}");
-            Console.WriteLine($"Hit Ratio: {totalHits / (double)totalMisses}");
-            Console.WriteLine($"Number of Read Accesses: {readAccesses}");
-            Console.WriteLine($"Number of Write Accesses: {writeAccesses}");
-            Console.WriteLine($"Read/Write Ratio: {readAccesses / (double)writeAccesses}");
-            Console.WriteLine($"Total Number of Memory References: {readAccesses + writeAccesses}");
-        }
-    }
-    */
-
 }
 
