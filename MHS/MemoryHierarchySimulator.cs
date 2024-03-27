@@ -44,22 +44,17 @@ namespace MHS
 
             using (StreamReader rdr = new StreamReader(@$"..\..\..\{trace}"))
             {
-                //int i = 0;
                 string line;
                 string[] inputLines;
-
 
                 while ((line = rdr.ReadLine()) != null)
                 {
                     inputLines = line.Split(":");
                     memoryAddresses.Add(inputLines[0]);
                     memoryAddresses.Add(inputLines[1]);
-                    //i += 2;
                 }
-
                 rdr.Close();
             }
-
             return memoryAddresses;
         }
 
@@ -94,27 +89,26 @@ namespace MHS
         /// <param name="memoryAddress">A memory address object.</param>
         public void UpdateStatistics(MemoryAddress memoryAddress)
         {
-            string memoryReference = $"{memoryAddress.accessType}:{memoryAddress.virtualPageNumber}{memoryAddress.virtualPageOffset} , {memoryAddress.virtualPageNumber} , {memoryAddress.virtualPageOffset} , {memoryAddress.physicalPageNumber} , {memoryAddress.physicalPageOffset}\n";
+            string hitormiss = "";
+            if (memoryAddress.isHit) {
+                totalHits++;
+                hitormiss = "Hit";
+            } else {
+                totalMisses++;
+                hitormiss = "Miss";
+            }
+            
+            if (memoryAddress.accessType == 'R')
+                readAccesses++;
+            else if (memoryAddress.accessType == 'W')
+                writeAccesses++;
+            
+
+            string memoryReference = $"{memoryAddress.accessType}:{memoryAddress.virtualPageNumber}{memoryAddress.virtualPageOffset} , {memoryAddress.virtualPageNumber} , {memoryAddress.virtualPageOffset} , {memoryAddress.physicalPageNumber} , {memoryAddress.physicalPageOffset}, {hitormiss}\n";
 
             memoryReferences.Add(memoryReference);
 
-            if (memoryAddress.isHit)
-            {
-                totalHits++;
-            }
-            else
-            {
-                totalMisses++;
-            }
-
-            if (memoryAddress.accessType == 'R')
-            {
-                readAccesses++;
-            }
-            else if (memoryAddress.accessType == 'W')
-            {
-                writeAccesses++;
-            }
+            
             Console.WriteLine(memoryReference);
         }
 
