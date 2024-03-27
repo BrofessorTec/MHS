@@ -13,7 +13,7 @@ namespace MHS
 
         public static void Run(MemoryHierarchySimulator mhs)
         {
-            List<string> accessOrder = new List<string>();
+            List<string> accessOrder = new List<string>(); //keep track of access order
             string[] cache = new string[mhs.capacityOfCache];
 
             foreach (MemoryAddress addr in mhs.memoryAddresses)
