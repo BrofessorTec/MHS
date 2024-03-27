@@ -19,9 +19,9 @@
                 Console.WriteLine($"\nMemory Hierarchy Simulator for {pathOfTrace}");
                 Console.WriteLine("Choose algorithm to simulate:");
                 Console.WriteLine("0. Edit Configuration");
-                Console.WriteLine("1. Optimal FIFO Algorithm");
-                Console.WriteLine("2. Optimal Greedy Algorithm");
-                Console.WriteLine("3. Optimal LRU Algorithm");
+                Console.WriteLine("1. FIFO Algorithm");
+                Console.WriteLine("2. Furthest in Future Algorithm");
+                Console.WriteLine("3. LRU Algorithm");
                 Console.WriteLine("Q. Quit the program\n");
 
                 string choice = Console.ReadLine();
@@ -69,12 +69,12 @@
                         break;
                     case "2":
                         // TODO enter Greedy run() here
+                        FIF.Run(mhs);
                         break;
                     case "3":
                         LRU.Run(mhs);
                         Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
-                    // TODO enter Furthest in Future case 4 run() here?
                     default:
                         Console.WriteLine("Invalid Entry...");
                         break;
