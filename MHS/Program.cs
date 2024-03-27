@@ -22,6 +22,7 @@
                 Console.WriteLine("1. FIFO Algorithm");
                 Console.WriteLine("2. Furthest in Future Algorithm");
                 Console.WriteLine("3. LRU Algorithm");
+                Console.WriteLine("4. Random Algorithm");
                 Console.WriteLine("Q. Quit the program\n");
 
                 string choice = Console.ReadLine();
@@ -73,6 +74,10 @@
                         break;
                     case "3":
                         LRU.Run(mhs);
+                        Console.WriteLine(mhs.DisplaySummaryStatistics());
+                        break;
+                    case "4":
+                        Random.Run(mhs);
                         Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
                     default:
