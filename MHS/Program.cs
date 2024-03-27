@@ -10,10 +10,8 @@
             //This should likely be put in as one of the options able to be changed with 0. Edit Configuration alongside the capacityOfCache.
             string pathOfTrace = "trunc_12.dat";
 
-
             while (isRunning)
             {
-
                 mhs.ParseMemoryAddress(mhs.ReadMemoryTrace(pathOfTrace));
 
                 Console.WriteLine($"\nMemory Hierarchy Simulator for {pathOfTrace}");
@@ -40,8 +38,7 @@
                         Console.WriteLine("\nWhat trace would you like to use?" +
                             "\n1. trunc_12.dat" +
                             "\n2. trace.dat" +
-                            "\n3. real_tr.dat" +
-                            "\n4. example.dat");
+                            "\n3. real_tr.dat");
                         string choice2 = Console.ReadLine();
                         if (choice2 == "1")
                         {
@@ -90,69 +87,8 @@
                 Console.Clear();
 
                 mhs.ResetValues();
-
             }
-
         }
-
-    }
-    
-    /*
-    //Test to see if this pushes to Master
-    //I just want my own comment
-
-    internal class Program
-    {
-        static void Main()
-        {
-            MemoryHierarchySimulator mhs = new MemoryHierarchySimulator();
-
-            while (true)
-            {
-                Console.WriteLine("Memory Hierarchy Simulator");
-
-                // Read configuration or set default values
-
-                Console.WriteLine("Choose algorithm to simulate:");
-                Console.WriteLine("1. Optimal Greedy Algorithm");
-                Console.WriteLine("2. Optimal FIFO Algorithm");
-                Console.WriteLine("3. Optimal LRU Algorithm");
-                Console.WriteLine("Q. Quit the program");
-
-                string choice = Console.ReadLine();
-
-
-                switch (choice.ToLower())
-                {
-                    case "q":
-                        Console.WriteLine("Thanks for using the program, exiting now..");
-                        Thread.Sleep(1000);
-                        Environment.Exit(0);
-                        break;
-                    case "1":
-                        mhs.OptimalGreedyAlgorithm();
-                        mhs.DisplaySummaryStatistics();
-                        break;
-                    case "2":
-                        //OptimalFIFOAlgorithm();
-                        mhs.DisplaySummaryStatistics();
-                        break;
-                    case "3":
-                        //OptimalLRUAlgorithm(); 
-                        mhs.DisplaySummaryStatistics();
-                        break;
-                    default:
-                        Console.WriteLine("Invalid Number Entered...");
-                        break;
-                }
-
-                Console.WriteLine("Enter any key to continue.");
-                Console.ReadLine();
-                Console.Clear();
-            }
-
-        }
-    }
-    */
+    }   
 }
 
