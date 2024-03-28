@@ -12,7 +12,6 @@ namespace MHS {
             foreach (MemoryAddress addr in mhs.memoryAddresses) {
                 if (cache.Contains(addr.virtualPageNumber)) {
                     addr.isHit = true;
-                    // constantly removes the oldest element and renews it if it repeats so that it is considered recently used
                     accessOrder.Remove(addr.virtualPageNumber);
                     accessOrder.Add(addr.virtualPageNumber);                    
                 } else {

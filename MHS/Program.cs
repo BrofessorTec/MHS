@@ -6,7 +6,7 @@
         {
             MemoryHierarchySimulator mhs = new MemoryHierarchySimulator();
             bool isRunning = true;
-            string pathOfTrace = "trunc_12.dat";
+            string pathOfTrace = "real_tr.dat";
             
             while (isRunning)
             {
