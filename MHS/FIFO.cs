@@ -15,13 +15,16 @@ namespace MHS
 
             foreach (MemoryAddress address in mhs.memoryAddresses)
             {
+                //Initial Filling of the Cache.
                 if (queue.Count < mhs.capacityOfCache)
                 {
+                    //If the address is in the cache, mark it as a hit.
                     if (mhs.cache.ContainsKey(address.virtualPageNumber))
                     {
                         address.isHit = true;
                         address.physicalPageNumber = mhs.cache.GetValueOrDefault(address.virtualPageNumber);
                     }
+                    //If the address is not in the cache, add it to the cache and the queue.
                     else
                     {
                         address.isHit = false;
@@ -35,11 +38,14 @@ namespace MHS
                     }
                 }
 
+                //Algorithm Running once Cache is at capacity.
+                //If the address is in the cache, mark it as a hit.
                 else if (mhs.cache.ContainsKey(address.virtualPageNumber))
                 {
                     address.isHit = true;
                     address.physicalPageNumber = mhs.cache.GetValueOrDefault(address.virtualPageNumber);
                 }
+                //If the address is not in the cache, figure out what to remove using from the cache using the queue then add it to the cache and the queue.
                 else
                 {
                     address.isHit = false;
