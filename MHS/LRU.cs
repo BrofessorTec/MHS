@@ -28,7 +28,6 @@ namespace MHS {
                     mhs.cache[addr.virtualPageNumber] = (index + 1).ToString();
                 }
                 addr.physicalPageNumber = mhs.cache[addr.virtualPageNumber];
-                addr.physicalPageOffset = addr.virtualPageOffset; //can do this in constructor
                 mhs.UpdateStatistics(addr);
             }
         }

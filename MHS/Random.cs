@@ -44,7 +44,6 @@ namespace MHS
                 }
 
                 addr.physicalPageNumber = mhs.cache[addr.virtualPageNumber];
-                addr.physicalPageOffset = addr.virtualPageOffset;
                 mhs.UpdateStatistics(addr);
             }
         }
