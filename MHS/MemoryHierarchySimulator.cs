@@ -45,8 +45,10 @@ namespace MHS
                     string line = rdr.ReadLine();
                     string[] input = line.Split(":");                   
                     char accessType = char.Parse(input[0]);
-                    string pageNumber = input[1].Length >= pageLength ? input[1].Substring(0, pageLength) : input[1];
-                    string pageOffset = input[1].Length > pageLength ? input[1].Substring(pageLength) : "";
+
+                    string pageNumber = input[1].Length >= pageLength ? input[1].Substring(0,input[1].Length - pageLength) : input[1];
+                    string pageOffset = input[1].Length > pageLength ? input[1].Substring(input[1].Length - pageLength, pageLength) : "";
+
                     MemoryAddress mA = new MemoryAddress(accessType, pageNumber, pageOffset);
                     memoryAddresses.Add(mA);
                 }
