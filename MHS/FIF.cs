@@ -30,14 +30,12 @@ namespace MHS
                     addr.isHit = false;
                     if (mhs.cache.Count >= mhs.capacityOfCache)
                     {
-
-                        //remove from cache the one that is not needed in the future
                         int j = 1;
                         cacheBuffer.Clear();
                         // can try to reset the cachebuffer here before each loop. probably more efficient ways to do this
 
                         while (cacheBuffer.Count < (mhs.capacityOfCache - 1) && (i + j) < (mhs.memoryAddresses.Count() - mhs.capacityOfCache - 1))
-                        {     // attemping to run this until near the end of the cache, probably need to change the if statements around
+                        {     // attemping to run this until near the end of the cache to not go out of bounds
                             if (mhs.cache.ContainsKey(mhs.memoryAddresses[i + j].virtualPageNumber) && !cacheBuffer.Contains(mhs.memoryAddresses[i + j].virtualPageNumber))
                             {
                                 //add to cache buffer if it is used in future
@@ -45,7 +43,6 @@ namespace MHS
                             }
                             j++; 
                         }
-                        // might need another statement to check the last elements of the memAddresses when close to the end?
 
                         // remove from the real cache
                         foreach (string key in mhs.cache.Keys)
@@ -72,7 +69,6 @@ namespace MHS
                     mhs.cache.Add(addr.virtualPageNumber, index.ToString());
                 }
                 addr.physicalPageNumber = mhs.cache[addr.virtualPageNumber];
-                addr.physicalPageOffset = addr.virtualPageOffset; //can do this in constructor
                 mhs.UpdateStatistics(addr);
             }
         }
