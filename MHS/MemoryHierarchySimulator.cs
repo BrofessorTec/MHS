@@ -31,7 +31,7 @@ namespace MHS
             readAccesses = 0;
             writeAccesses = 0;
             capacityOfCache = 4;
-            pageLength = 1;
+            pageSize = 1;
         }
 
         /// <summary>
@@ -46,8 +46,8 @@ namespace MHS
                     string[] input = line.Split(":");                   
                     char accessType = char.Parse(input[0]);
 
-                    string pageNumber = input[1].Length >= pageLength ? input[1].Substring(0,input[1].Length - pageLength) : input[1];
-                    string pageOffset = input[1].Length > pageLength ? input[1].Substring(input[1].Length - pageLength, pageLength) : "";
+                    string pageNumber = input[1].Length >= pageSize ? input[1].Substring(0,input[1].Length - pageSize) : input[1];
+                    string pageOffset = input[1].Length > pageSize ? input[1].Substring(input[1].Length - pageSize, pageSize) : "";
 
                     MemoryAddress mA = new MemoryAddress(accessType, pageNumber, pageOffset);
                     memoryAddresses.Add(mA);
