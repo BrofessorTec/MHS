@@ -31,7 +31,7 @@ namespace MHS
             readAccesses = 0;
             writeAccesses = 0;
             capacityOfCache = 4;
-            pageSize = 1;
+            pageSize = 2;
         }
 
         /// <summary>
