@@ -13,7 +13,7 @@ namespace MHS
         public Dictionary<string, string> cache = new Dictionary<string, string>();
         public List<MemoryAddress> memoryAddresses = new List<MemoryAddress>();
         public List<string> memoryReferences = new List<string>();
-        public int pageLength { get; set; }
+        public int pageSize { get; set; }
         public int totalHits { get; set; }
         public int totalMisses { get; set; }
         public int readAccesses { get; set; }
@@ -31,7 +31,7 @@ namespace MHS
             readAccesses = 0;
             writeAccesses = 0;
             capacityOfCache = 4;
-            pageLength = 2;
+            pageLength = 1;
         }
 
         /// <summary>
@@ -45,8 +45,10 @@ namespace MHS
                     string line = rdr.ReadLine();
                     string[] input = line.Split(":");                   
                     char accessType = char.Parse(input[0]);
+
                     string pageNumber = input[1].Length >= pageLength ? input[1].Substring(0,input[1].Length - pageLength) : input[1];
                     string pageOffset = input[1].Length > pageLength ? input[1].Substring(input[1].Length - pageLength, pageLength) : "";
+
                     MemoryAddress mA = new MemoryAddress(accessType, pageNumber, pageOffset);
                     memoryAddresses.Add(mA);
                 }

@@ -60,7 +60,7 @@
                         } else if (choice2 == "5") {
                             Console.Clear();
                             Console.WriteLine("Enter Page Length?");
-                            mhs.pageLength = int.Parse(Console.ReadLine());
+                            mhs.pageSize = int.Parse(Console.ReadLine());
                         } else
                         {
                             Console.WriteLine("Invalid Entry..");
@@ -69,28 +69,24 @@
                     case "1":
                         Console.Clear();
                         mhs.algoName = "FIFO";
-                        Console.WriteLine("\nTrace, Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset, hit/miss\n");
                         FIFO.Run(mhs);
                         Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
                     case "2":
                         Console.Clear();
                         mhs.algoName = "FIF";
-                        Console.WriteLine("\nTrace, Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset, hit/miss\n");
                         FIF.Run(mhs);
                         Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
                     case "3":
                         Console.Clear();
                         mhs.algoName = "LRU";
-                        Console.WriteLine("\nTrace, Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset, hit/miss\n");
                         LRU.Run(mhs);
                         Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
                     case "4":
                         Console.Clear();
                         mhs.algoName = "Random";
-                        Console.WriteLine("\nTrace, Virtual Page Number, Virtual Page Offset, Physical Page Number, Physical Page Offset, hit/miss\n");
                         Random.Run(mhs);
                         Console.WriteLine(mhs.DisplaySummaryStatistics());
                         break;
